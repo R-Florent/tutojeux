@@ -14,3 +14,9 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 400
         self.rect.y = 500
+
+    def move_right(self):
+        self.rect.x += self.velocity  # Déplace le joueur vers la droite
+
+    def move_left(self):
+        self.rect.x -= self.velocity  # Déplace le joueur vers la gauche

@@ -1,9 +1,6 @@
 import pygame
-from class_Player import Player
 from game import Game
-
 pygame.init()
-import pygame
 
 pygame.display.set_caption("Le jeux qu'il est trop bien ")
 screen = pygame.display.set_mode((1080,720))
@@ -28,6 +25,12 @@ while running:
     for event in pygame.event.get():
         #que l'évent est fermeture de fennetre
         if event.type == pygame.QUIT:
-            runnig = False
+            running = False
             pygame.quit()
             print("jeux a été quitter")
+        elif event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_RIGHT:
+                game.player.move_right()
+            elif event.key == pygame.K_LEFT:
+                game.player.move_left()
