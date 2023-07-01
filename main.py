@@ -17,7 +17,11 @@ while running:
     #appliquer le back gound du jeux
     screen.blit(background,(0,-200))
 
+    #applique l'image de mon joueur
     screen.blit(game.player.image, game.player.rect)
+
+    #applique l'ensemble des image de mon group de projectiles
+    game.player.all_projectiles.draw(screen)
 
     #Vérification de la dirrection du joeueur *
     if game.pressed.get(pygame.K_RIGHT) and game.player.rect.x + game.player.rect.width < screen.get_width():
@@ -38,5 +42,10 @@ while running:
         #implémentation des touche de
         elif event.type == pygame.KEYDOWN:
             game.pressed[event.key] = True
+
+            #Permet de savoir quand le joeur veut tirait un proctile avec la touche espace
+            if event.key == pygame.K_SPACE:
+                game.player.launch_projectile()
+
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
