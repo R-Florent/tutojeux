@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
         self.health = 100
         self.max_health = 100
         self.attack = 10
-        self.velocity = 5
+        self.velocity = 3
         self.all_projectiles = pygame.sprite.Group()
         self.image = pygame.image.load('PygameAssets-main/player.png')
         print(self.image)
