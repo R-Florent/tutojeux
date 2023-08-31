@@ -3,8 +3,9 @@ from projectile import Projectile
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self):
+    def __init__(self, game):
         super().__init__()
+        self.game = game
         self.health = 100
         self.max_health = 100
         self.attack = 10
@@ -17,7 +18,8 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = 500
 
     def move_right(self):
-        self.rect.x += self.velocity  # Déplace le joueur vers la droite
+         if not self.game.chek_collision(self,self.game.all_monstre):
+             self.rect.x += self.velocity  # Déplace le joueur vers la droite
 
     def move_left(self):
         self.rect.x -= self.velocity  # Déplace le joueur vers la gauche
