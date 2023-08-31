@@ -24,6 +24,9 @@ while running:
     for projectile in game.player.all_projectiles:
         projectile.move()
 
+    #recuperer les monstres de notre jeu
+    for monster in game.all_monstre:
+        monster.move()
     # applique l'ensemble des image de mon group de projectiles
     game.player.all_projectiles.draw(screen)
 
