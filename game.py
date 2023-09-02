@@ -5,7 +5,10 @@ from class_Player import Player
 class Game:
     def __init__(self):
         #generer notre joueur
+        self.all_players = pygame.sprite.Group()
         self.player = Player(self)
+        self.all_players.add(self.player)
+
         #group de monstre
         self.all_monstre = pygame.sprite.Group()
         self.pressed = {}
@@ -16,4 +19,4 @@ class Game:
         self.all_monstre.add(monstre)
 
     def chek_collision(self,sprite, group):
-        return pygame.sprite.spritecollide(sprite,group, False, pygame.sprite.collide_mask() )
+        return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)

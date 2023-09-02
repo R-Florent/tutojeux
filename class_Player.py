@@ -26,3 +26,4 @@ class Player(pygame.sprite.Sprite):
 
     def launch_projectile(self):
         self.all_projectiles.add(Projectile(self))
+
