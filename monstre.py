@@ -1,8 +1,9 @@
 import pygame
 
 class Monstre(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, game):
         super().__init__()
+        self.game = game
         self.health = 20
         self.max_health = 20
         self.attack = 5
@@ -14,5 +15,7 @@ class Monstre(pygame.sprite.Sprite):
         self.rect.y = 500
 
     def move(self):
-        self.rect.x -= self.velocity
+        #le déplacment ne se fait que si il n'est pas en contacte avec le J
+        if not self.game.chek_collision(self, self.game.all_players):
+            self.rect.x -= self.velocity  # Déplace le joueur vers la droite
         

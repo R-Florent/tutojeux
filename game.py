@@ -15,7 +15,7 @@ class Game:
         self.spawn_monster()
         #genere notre monstre
     def spawn_monster(self):
-        monstre = Monstre()
+        monstre = Monstre(self)
         self.all_monstre.add(monstre)
 
     def chek_collision(self,sprite, group):
