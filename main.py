@@ -14,6 +14,7 @@ game = Game()
 running = True
 
 while running:
+
     # appliquer le back gound du jeux
     screen.blit(background, (0, -200))
 

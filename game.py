@@ -13,6 +13,7 @@ class Game:
         self.all_monstre = pygame.sprite.Group()
         self.pressed = {}
         self.spawn_monster()
+        self.spawn_monster()
         #genere notre monstre
     def spawn_monster(self):
         monstre = Monstre(self)

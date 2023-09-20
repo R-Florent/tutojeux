@@ -1,4 +1,5 @@
 import pygame
+import random
 
 class Monstre(pygame.sprite.Sprite):
     def __init__(self, game):
@@ -7,15 +8,26 @@ class Monstre(pygame.sprite.Sprite):
         self.health = 100
         self.max_health = 100
         self.attack = 5
-        self.velocity = 1
+        self.velocity = random.randint(1, 5)
         self.image = pygame.image.load('PygameAssets-main/mummy.png')
         self.rect = self.image.get_rect()
         print(self.image)
-        self.rect.x = 1080
+        self.rect.x = 1080 + random.randint(1, 600)
         self.rect.y = 540
-
+        print(self.velocity)
     def take_dmg(self, amount):
         self.health -= amount
+
+        if self.health <= 0:
+            #le tuer
+            # self.all_monstre.remove(self)
+
+            #le faire respawn pour ne pas consomer trop de mémoire
+            self.rect.x = 1080 + random.randint(1, 600)
+            self.health = self.max_health
+            self.velocity = random.randint(1, 5)
+
+
 
     def update_health_bar(self, surface):
         #definir une couleur pour notre jauge de vie
