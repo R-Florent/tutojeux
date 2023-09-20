@@ -14,6 +14,9 @@ class Monstre(pygame.sprite.Sprite):
         self.rect.x = 1080
         self.rect.y = 540
 
+    def take_dmg(self, amount):
+        self.health -= amount
+
     def update_health_bar(self, surface):
         #definir une couleur pour notre jauge de vie
         bar_color_red = (215, 5, 5)
