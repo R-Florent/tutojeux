@@ -14,6 +14,17 @@ class Monstre(pygame.sprite.Sprite):
         self.rect.x = 1080
         self.rect.y = 500
 
+    def update_health_bar(self, surface):
+        #definir une couleur pour notre jauge de vie
+        bar_color = (215, 5, 5)
+        #('05D72B')
+
+        #définir la posistion de notre jauge de vie
+        bar_position = [self.rect.x, self.rect.y, self.health, 5]
+
+        #dessiner la barre de vie
+        pygame.draw.rect(surface, bar_color, bar_position)
+
     def move(self):
         #le déplacment ne se fait que si il n'est pas en contacte avec le J
         if not self.game.chek_collision(self, self.game.all_players):
