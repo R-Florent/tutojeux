@@ -20,7 +20,7 @@ class Monstre(pygame.sprite.Sprite):
         #('05D72B')
 
         #définir la posistion de notre jauge de vie
-        bar_position = [self.rect.x, self.rect.y, self.health, 5]
+        bar_position = [self.rect.x + 10, self.rect.y -20, self.health, 5]
 
         #dessiner la barre de vie
         pygame.draw.rect(surface, bar_color, bar_position)
