@@ -4,26 +4,30 @@ class Monstre(pygame.sprite.Sprite):
     def __init__(self, game):
         super().__init__()
         self.game = game
-        self.health = 20
-        self.max_health = 20
+        self.health = 100
+        self.max_health = 100
         self.attack = 5
         self.velocity = 1
         self.image = pygame.image.load('PygameAssets-main/mummy.png')
         self.rect = self.image.get_rect()
         print(self.image)
         self.rect.x = 1080
-        self.rect.y = 500
+        self.rect.y = 540
 
     def update_health_bar(self, surface):
         #definir une couleur pour notre jauge de vie
-        bar_color = (215, 5, 5)
-        #('05D72B')
+        bar_color_red = (215, 5, 5)
+        bar_color = (5, 215, 43)
 
         #définir la posistion de notre jauge de vie
-        bar_position = [self.rect.x + 10, self.rect.y -20, self.health, 5]
+        bar_position = [self.rect.x + 10, self.rect.y -30, self.health, 5]
+        bar_position_red = [self.rect.x + 10, self.rect.y - 30, self.max_health, 5]
 
         #dessiner la barre de vie
+        pygame.draw.rect(surface, bar_color_red, bar_position_red)
         pygame.draw.rect(surface, bar_color, bar_position)
+
+
 
     def move(self):
         #le déplacment ne se fait que si il n'est pas en contacte avec le J
