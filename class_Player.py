@@ -27,3 +27,14 @@ class Player(pygame.sprite.Sprite):
     def launch_projectile(self):
         self.all_projectiles.add(Projectile(self))
 
+    def update_health_bar(self, surface):
+
+        #dessiner la barre de vie
+        pygame.draw.rect(surface, (215, 5, 5), [self.rect.x + 50, self.rect.y +20, self.max_health, 7])
+        pygame.draw.rect(surface, (5, 215, 43), [self.rect.x + 50, self.rect.y +20, self.health, 7])
+
+    def take_dmg(self, amount):
+        self.health -= amount
+        if  self.health <= 0:
+            print("le joueur et mort")
+#            pygame.quit()

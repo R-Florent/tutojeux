@@ -1,4 +1,6 @@
 import pygame
+from pygame.time import Clock
+
 from game import Game
 
 pygame.init()
@@ -9,17 +11,26 @@ screen = pygame.display.set_mode((1080, 720))
 # importe et ccharger le background du jeux
 background = pygame.image.load('PygameAssets-main/bg.jpg')
 
+clock = pygame.time.Clock()
+
 game = Game()
 
 running = True
 
+#boucle de jeux
+
 while running:
+
+    clock.tick(90)
 
     # appliquer le back gound du jeux
     screen.blit(background, (0, -200))
 
     # applique l'image de mon joueur
     screen.blit(game.player.image, game.player.rect)
+
+    #actualiser la barre de vie du joueur
+    game.player.update_health_bar(screen)
 
     # recuperer les projectiles du joueur
     for projectile in game.player.all_projectiles:

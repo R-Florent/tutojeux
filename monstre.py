@@ -15,6 +15,7 @@ class Monstre(pygame.sprite.Sprite):
         self.rect.x = 1080 + random.randint(1, 600)
         self.rect.y = 540
         print(self.velocity)
+
     def take_dmg(self, amount):
         self.health -= amount
 
@@ -28,24 +29,17 @@ class Monstre(pygame.sprite.Sprite):
             self.velocity = random.randint(1, 5)
 
 
-
     def update_health_bar(self, surface):
-        #definir une couleur pour notre jauge de vie
-        bar_color_red = (215, 5, 5)
-        bar_color = (5, 215, 43)
-
-        #définir la posistion de notre jauge de vie
-        bar_position = [self.rect.x + 10, self.rect.y -30, self.health, 5]
-        bar_position_red = [self.rect.x + 10, self.rect.y - 30, self.max_health, 5]
 
         #dessiner la barre de vie
-        pygame.draw.rect(surface, bar_color_red, bar_position_red)
-        pygame.draw.rect(surface, bar_color, bar_position)
-
+        pygame.draw.rect(surface, (215, 5, 5), [self.rect.x + 10, self.rect.y - 30, self.max_health, 5])
+        pygame.draw.rect(surface, (5, 215, 43), [self.rect.x + 10, self.rect.y -30, self.health, 5])
 
 
     def move(self):
         #le déplacment ne se fait que si il n'est pas en contacte avec le J
         if not self.game.chek_collision(self, self.game.all_players):
             self.rect.x -= self.velocity  # Déplace le joueur vers la droite
+        else:
+            self.game.player.take_dmg(self.attack)
         
