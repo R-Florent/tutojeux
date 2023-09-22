@@ -26,53 +26,26 @@ while running:
     # appliquer le back gound du jeux
     screen.blit(background, (0, -200))
 
-    # applique l'image de mon joueur
-    screen.blit(game.player.image, game.player.rect)
+    if game.is_playing:
+        game.update(screen)
 
-    #actualiser la barre de vie du joueur
-    game.player.update_health_bar(screen)
+        # mettre à jour l'écran
+        pygame.display.flip()
 
-    # recuperer les projectiles du joueur
-    for projectile in game.player.all_projectiles:
-        projectile.move()
+        # si le joueur ferme cette fenetre
+        for event in pygame.event.get():
+            # que l'évent est fermeture de fennetre
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+                print("jeux a été quitter")
+            # implémentation des touche de
+            elif event.type == pygame.KEYDOWN:
+                self.pressed[event.key] = True
 
-    #recuperer les monstres de notre jeu
-    for monster in game.all_monstre:
-        monster.move()
-        monster.update_health_bar(screen)
+                # Permet de savoir quand le joeur veut tirait un proctile avec la touche espace
+                if event.key == pygame.K_SPACE:
+                    self.player.launch_projectile()
 
-
-    # applique l'ensemble des image de mon group de projectiles
-    game.player.all_projectiles.draw(screen)
-
-    # appliquer l'ensemble des image de mon group de monstre
-    game.all_monstre.draw(screen)
-
-    # Vérification de la dirrection du joeueur *
-    if game.pressed.get(pygame.K_RIGHT) and game.player.rect.x + game.player.rect.width < screen.get_width():
-         game.player.move_right()
-    elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x > 0:
-        game.player.move_left()
-
-
-
-    # mettre à jour l'écran
-    pygame.display.flip()
-
-    # si le joueur ferme cette fenetre
-    for event in pygame.event.get():
-        # que l'évent est fermeture de fennetre
-        if event.type == pygame.QUIT:
-            running = False
-            pygame.quit()
-            print("jeux a été quitter")
-        # implémentation des touche de
-        elif event.type == pygame.KEYDOWN:
-            game.pressed[event.key] = True
-
-            # Permet de savoir quand le joeur veut tirait un proctile avec la touche espace
-            if event.key == pygame.K_SPACE:
-                game.player.launch_projectile()
-
-        elif event.type == pygame.KEYUP:
-            game.pressed[event.key] = False
+            elif event.type == pygame.KEYUP:
+                self.pressed[event.key] = False
