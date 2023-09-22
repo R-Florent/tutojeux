@@ -26,26 +26,27 @@ while running:
     # appliquer le back gound du jeux
     screen.blit(background, (0, -200))
 
+    #vérife si le jeux et en marche
     if game.is_playing:
         game.update(screen)
 
-        # mettre à jour l'écran
-        pygame.display.flip()
+    # mettre à jour l'écran
+    pygame.display.flip()
 
-        # si le joueur ferme cette fenetre
-        for event in pygame.event.get():
-            # que l'évent est fermeture de fennetre
-            if event.type == pygame.QUIT:
-                running = False
-                pygame.quit()
-                print("jeux a été quitter")
-            # implémentation des touche de
-            elif event.type == pygame.KEYDOWN:
-                self.pressed[event.key] = True
+    # si le joueur ferme cette fenetre
+    for event in pygame.event.get():
+        # que l'évent est fermeture de fennetre
+        if event.type == pygame.QUIT:
+            running = False
+            pygame.quit()
+            print("jeux a été quitter")
+        # implémentation des touche de
+        elif event.type == pygame.KEYDOWN:
+            self.pressed[event.key] = True
 
-                # Permet de savoir quand le joeur veut tirait un proctile avec la touche espace
-                if event.key == pygame.K_SPACE:
-                    self.player.launch_projectile()
+            # Permet de savoir quand le joeur veut tirait un proctile avec la touche espace
+            if event.key == pygame.K_SPACE:
+                self.player.launch_projectile()
 
-            elif event.type == pygame.KEYUP:
-                self.pressed[event.key] = False
+        elif event.type == pygame.KEYUP:
+            self.pressed[event.key] = False
