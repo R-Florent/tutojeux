@@ -1,6 +1,6 @@
 import pygame.sprite
 from monstre import Monstre
-from class_Player import Player
+from player import Player
 
 class Game:
     def __init__(self):
