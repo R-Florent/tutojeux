@@ -35,6 +35,6 @@ class Player(pygame.sprite.Sprite):
 
     def take_dmg(self, amount):
         self.health -= amount
-        if  self.health <= 0:
-            print("le joueur et mort")
-#            pygame.quit()
+        if self.health <= 0:
+            self.game.game_over()
+ #           pygame.quit()

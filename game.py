@@ -12,10 +12,20 @@ class Game:
         #group de monstre
         self.all_monstre = pygame.sprite.Group()
         self.pressed = {}
-        self.spawn_monster()
-        self.spawn_monster()
         self.is_playing = False
+
+
+    def start(self):
+        self.is_playing = True
         #genere notre monstre
+        self.spawn_monster()
+        self.spawn_monster()
+
+    def game_over (self):
+        if Player.health <= 0:
+            self.player.health = self.player.max_health
+            self.all_monstre = pygame.sprite.Group()
+            self.is_playing = False
 
     def update(self, screen):
         # applique l'image de mon joueur
