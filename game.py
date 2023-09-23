@@ -1,9 +1,14 @@
 import pygame.sprite
 from monstre import Monstre
 from player import Player
+from comet_event import CometFallEvent
 
 class Game:
     def __init__(self):
+
+        #def si notre jeux et lancée ou non
+        self.is_playing = False
+
         #generer notre joueur
         self.all_players = pygame.sprite.Group()
         self.player = Player(self)
@@ -12,20 +17,9 @@ class Game:
         #group de monstre
         self.all_monstre = pygame.sprite.Group()
         self.pressed = {}
-        self.is_playing = False
 
-
-    def start(self):
-        self.is_playing = True
-        #genere notre monstre
-        self.spawn_monster()
-        self.spawn_monster()
-
-    def game_over (self):
-        if self.player.health <= 0:
-            self.player.health = self.player.max_health
-            self.all_monstre = pygame.sprite.Group()
-            self.is_playing = False
+        #generer l'event commet event
+        self.coment_event = CometFallEvent
 
     def update(self, screen):
         # applique l'image de mon joueur
@@ -33,6 +27,9 @@ class Game:
 
         # actualiser la barre de vie du joueur
         self .player.update_health_bar(screen)
+
+        #actualiser la barre de remplissage de l'event coment_event
+        self.coment_event.update_bar(screen)
 
         # recuperer les projectiles du joueur
         for projectile in self.player.all_projectiles:
@@ -56,6 +53,17 @@ class Game:
             self.player.move_left()
 
 
+    def start(self):
+        self.is_playing = True
+        #genere notre monstre
+        self.spawn_monster()
+        self.spawn_monster()
+
+    def game_over (self):
+        if self.player.health <= 0:
+            self.player.health = self.player.max_health
+            self.all_monstre = pygame.sprite.Group()
+            self.is_playing = False
 
     def spawn_monster(self):
         monstre = Monstre(self)
