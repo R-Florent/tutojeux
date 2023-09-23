@@ -22,7 +22,7 @@ class Game:
         self.spawn_monster()
 
     def game_over (self):
-        if Player.health <= 0:
+        if self.player.health <= 0:
             self.player.health = self.player.max_health
             self.all_monstre = pygame.sprite.Group()
             self.is_playing = False
