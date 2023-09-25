@@ -7,7 +7,7 @@ class Game:
     def __init__(self):
 
         #def si notre jeux et lancée ou non
-        self.is_playing = False
+        self.is_playing = 1
 
         #generer notre joueur
         self.all_players = pygame.sprite.Group()
