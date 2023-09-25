@@ -49,6 +49,7 @@ while running:
     #vérife si le jeux et en marche
     if game.is_playing:
         game.update(screen)
+
     else:
         screen.blit(btn, (btn_x, btn_y))
         screen.blit(banner, banner_rect)

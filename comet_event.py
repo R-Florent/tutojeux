@@ -8,7 +8,7 @@ class CometFallEvent:
     def add_percent(self):
         self.percent +=1
 
-    def update_bar(self,surface):
+    def update_bar(self, surface):
         #bar noir ()
         pygame.draw.rect(surface,'black',[
             0,
