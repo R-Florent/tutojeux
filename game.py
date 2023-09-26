@@ -40,11 +40,10 @@ class Game:
             monster.move()
             monster.update_health_bar(screen)
 
-        # applique l'ensemble des image de mon group de projectiles
-        self.player.all_projectiles.draw(screen)
+        for comet in self.coment_event.all_comets:
+            comet.fall()
 
-        # appliquer l'ensemble des image de mon group de monstre
-        self.all_monstre.draw(screen)
+        self.draw(screen)
 
         # Vérification de la dirrection du joeueur *
         if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x + self.player.rect.width < screen.get_width():
@@ -52,6 +51,32 @@ class Game:
         elif self.pressed.get(pygame.K_LEFT) and self.player.rect.x > 0:
             self.player.move_left()
 
+    def draw(self, screen):
+
+        screen.blit(self.player.image, self.player.rect)
+        # met a jour les barre hp et commet event
+        self.player.update_health_bar(screen)
+        self.coment_event.update_bar(screen)
+
+        # applique l'ensemble des image de mon group de projectiles
+        self.player.all_projectiles.draw(screen)
+
+        # appliquer l'ensemble des image de mon group de monstre
+        self.all_monstre.draw(screen)
+
+        #appliquer l'ensemble des image de mon group de commet
+        self.coment_event.all_comets.draw(screen)
+
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.is_playing = False
+            elif event.type == pygame.KEYDOWN:
+                self.pressed[event.key] = True
+            elif event.type == pygame.KEYUP:
+                self.pressed[event.key] = False
+
+        # Ajoute d'autres gestionnaires d'événements ici
 
     def start(self):
         self.is_playing = True
