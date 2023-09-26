@@ -7,7 +7,7 @@ class Game:
     def __init__(self):
 
         #def si notre jeux et lancée ou non
-        self.is_playing = 1
+        self.is_playing = False
 
         #generer notre joueur
         self.all_players = pygame.sprite.Group()
@@ -67,14 +67,31 @@ class Game:
         #appliquer l'ensemble des image de mon group de commet
         self.coment_event.all_comets.draw(screen)
 
+    # Méthode pour gérer les événements du jeu
     def handle_events(self):
         for event in pygame.event.get():
+            # Si l'événement est la fermeture de la fenêtre
             if event.type == pygame.QUIT:
-                self.is_playing = False
+                self.is_playing = False  # Met fin au jeu
+                pygame.quit()
+                print("Le jeu a été quitté")
+
+            # Si une touche est enfoncée
             elif event.type == pygame.KEYDOWN:
-                self.pressed[event.key] = True
+                self.pressed[event.key] = True  # Enregistre que la touche est enfoncée
+
+                # Si la touche espace est enfoncée
+                if event.key == pygame.K_SPACE:
+                    self.player.launch_projectile()  # Le joueur tire un projectile
+
+            # Si une touche est relâchée
             elif event.type == pygame.KEYUP:
-                self.pressed[event.key] = False
+                self.pressed[event.key] = False  # Enregistre que la touche est relâchée
+
+            # Si un clic de souris est détecté
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if btn_rect.collidepoint(event.pos):
+                    self.start()  # Démarre le jeu lorsque le bouton "Play" est cliqué
 
         # Ajoute d'autres gestionnaires d'événements ici
 
