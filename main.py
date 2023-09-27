@@ -31,10 +31,9 @@ btn_rect.topleft = (btn_x, btn_y)
 
 clock = pygame.time.Clock()
 
+running = True
 #chager notre jeux
 game = Game()
-
-running = True
 
 #boucle de jeux
 

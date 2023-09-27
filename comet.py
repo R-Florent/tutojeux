@@ -3,15 +3,15 @@ import random
 
 class Comet(pygame.sprite.Sprite):
     
-    def __init__(self):
+    def __init__(self,game):
         super().__init__()
 
-        self.velocity = random.randint(1,3)
-        self.rect.x = random.randint(20,1010)
-        self.rect.y = - random.randint (30,600)
-        self.dmg = 4
+        self.velocity = random.randint(1, 3)
         self.image = pygame.image.load('PygameAssets-main/comet.png')
         self.rect = self.image.get_rect()
+        self.rect.x = random.randint(20, 1010)
+        self.rect.y = - random.randint(30, 600)
+        self.dmg = 4
 
 
     def fall(self):

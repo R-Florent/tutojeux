@@ -21,6 +21,7 @@ class Game:
         #generer l'event commet event
         self.coment_event = CometFallEvent()
 
+
     def update(self, screen):
         # applique l'image de mon joueur
         screen.blit(self.player.image, self.player.rect)
