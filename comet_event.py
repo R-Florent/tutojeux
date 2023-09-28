@@ -48,4 +48,3 @@ class CometFallEvent:
             (surface.get_width()/100)* self.percent, # longueur de la fentre
             10 # epaissuer de la barre
         ])
-
