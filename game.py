@@ -49,6 +49,8 @@ class Game:
         # appliquer l'ensemble des image de mon group de monstre
         self.all_monstre.draw(screen)
 
+        self.coment_event.all_comets.draw(screen)
+
         # Vérification de la dirrection du joeueur *
         if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x + self.player.rect.width < screen.get_width():
             self.player.move_right()

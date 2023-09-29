@@ -19,13 +19,16 @@ class CometFallEvent:
         self.percent = 0
 
     def meteor_fall(self):
-        #faire appaitre boul de feu
-        self.all_comets.add(Comet)
+        # Faire apparaître une boule de feu
+#       comet = Comet()
+        self.all_comets.add(Comet())  # Passer self.game comme argument
+
     def attempt_fall(self):
 
         if self.is_full_loaded():
             print("lancement de la plui de météorite")
             self.rest_percent()
+            self.meteor_fall()
 
 
     def update_bar(self, surface):
