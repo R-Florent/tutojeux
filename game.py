@@ -19,7 +19,7 @@ class Game:
         self.pressed = {}
 
         #generer l'event commet event
-        self.coment_event = CometFallEvent()
+        self.coment_event = CometFallEvent(self)
 
     def update(self, screen):
         # applique l'image de mon joueur

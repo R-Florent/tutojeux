@@ -2,10 +2,10 @@ import pygame
 from comet import Comet
 class CometFallEvent:
 
-    def __init__(self):
+    def __init__(self,game):
         self.percent = 0
         self.percent_speed = 5
-
+        self.game = game
         #def  un group de commet
         self.all_comets = pygame.sprite.Group()
 
@@ -21,7 +21,7 @@ class CometFallEvent:
     def meteor_fall(self):
         # Faire apparaître une boule de feu
 #       comet = Comet()
-        self.all_comets.add(Comet())  # Passer self.game comme argument
+        self.all_comets.add(Comet(self))  # Passer self.game comme argument
 
     def attempt_fall(self):
 
