@@ -19,7 +19,7 @@ class Monstre(pygame.sprite.Sprite):
     def take_dmg(self, amount):
         self.health -= amount
 
-        if self.health <= 0:
+        if self.health <= 0 :
             #le tuer
             # self.all_monstre.remove(self)
 
@@ -27,6 +27,14 @@ class Monstre(pygame.sprite.Sprite):
             self.rect.x = 1080 + random.randint(1, 600)
             self.health = self.max_health
             self.velocity = random.randint(1, 5)
+
+            if self.game.coment_event.is_full_loaded():
+                self.game.all_monstre.remove(self)
+
+                self.game.coment_event.attempt_fall()
+
+            else:
+              print("plui de météore")
 
 
     def update_health_bar(self, surface):

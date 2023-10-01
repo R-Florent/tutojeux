@@ -63,16 +63,21 @@ class Game:
         #genere notre monstre
         self.spawn_monster()
         self.spawn_monster()
+        self.coment_event.percent = 0
 
     def game_over (self):
         if self.player.health <= 0:
             self.player.health = self.player.max_health
+            self.coment_event.all_comets = pygame.sprite.Group()
+            self.coment_event.rest_percent()
             self.all_monstre = pygame.sprite.Group()
+
             self.is_playing = False
 
     def spawn_monster(self):
         monstre = Monstre(self)
         self.all_monstre.add(monstre)
+
 
     def chek_collision(self,sprite, group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
