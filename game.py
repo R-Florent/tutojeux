@@ -39,6 +39,7 @@ class Game:
         for monster in self.all_monstre:
             monster.move()
             monster.update_health_bar(screen)
+            monster.update_animation()
 
         for comet in self.coment_event.all_comets:
             comet.fall()

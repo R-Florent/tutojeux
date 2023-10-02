@@ -1,9 +1,9 @@
 import pygame
 import random
-
-class Monstre(pygame.sprite.Sprite):
+import animation
+class Monstre(animation.AnimatieSprite):
     def __init__(self, game):
-        super().__init__()
+        super().__init__("mummy")
         self.game = game
         self.health = 100
         self.max_health = 100
@@ -36,6 +36,8 @@ class Monstre(pygame.sprite.Sprite):
             else:
               print("plui de météore")
 
+    def update_animation(self):
+        self.image
 
     def update_health_bar(self, surface):
 
