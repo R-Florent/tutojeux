@@ -4,7 +4,7 @@ class AnimatieSprite(pygame.sprite.Sprite):
 
     def __init__(self, sprite_name):
         super().__init__()
-        self.image = pygame.image.load(f'assets/{sprite_name}.png')
+        self.image = pygame.image.load(f'assets/mummy/mummy1.png/{sprite_name}.png')
         self.current_image = 0 #commencer l'animation
         self.image = animation.get(sprite_name)
         self.animation = False
