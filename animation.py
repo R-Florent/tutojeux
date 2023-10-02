@@ -4,10 +4,10 @@ class AnimatieSprite(pygame.sprite.Sprite):
 
     def __init__(self, sprite_name):
         super().__init__()
-        self.image = pygame.image.load(f'assets/mummy/mummy1.png/{sprite_name}.png')
-        self.current_image = 0 #commencer l'animation
-        self.image = animation.get(sprite_name)
+        self.images = animation.get(sprite_name)
+        self.current_image = 0  # Commencer l'animation
         self.animation = False
+        self.image = self.images[self.current_image]  # Charger la première image
 
     #méthode qui démar l'annimation
     def start_animation(self):
@@ -28,7 +28,7 @@ class AnimatieSprite(pygame.sprite.Sprite):
                 if loop is False:
                     self.animation = False
 
-            self.image = self.image[self.current_image]
+            self.image = self.images[self.current_image]
 
 
 
@@ -39,7 +39,7 @@ def load_animation_images(sprite_name):
     #charger les 24 images de c'est sprite
     images =[]
     #recuperer le chemin du dossier pour ce sprtie
-    path = f"assets/{sprite_name}/{sprite_name}"
+    path = f"PygameAssets-main/{sprite_name}/{sprite_name}"
 
     for i in range(1, 24):
         image_path = path + str(i) + '.png'
