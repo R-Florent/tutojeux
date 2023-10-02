@@ -5,6 +5,11 @@ from game import Game
 
 pygame.init()
 
+#définir une horloge du jeux
+clock = pygame.time.Clock
+FPS = 60
+
+
 pygame.display.set_caption("Le jeux qu'il est trop bien ")
 screen = pygame.display.set_mode((1080, 720))
 
@@ -39,8 +44,6 @@ running = True
 #boucle de jeux
 
 while running:
-
-    clock.tick(90)
 
     # appliquer le back gound du jeux
     screen.blit(background, (0, -200))
@@ -78,3 +81,6 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if btn_rect.collidepoint(event.pos):
                 game.start()
+
+    #fixer le nombre de fps sur l'horloge du jeux
+    clock.tick(FPS)

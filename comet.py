@@ -24,9 +24,8 @@ class Comet(pygame.sprite.Sprite):
 
         if len(self.comet_event.all_comets) == 0:
             print("event fini")
-
-            self.comet_event.game.spawn_monster()
-            self.comet_event.game.spawn_monster()
+            #appelle le début du jeux 
+            self.comet_event.game.start()
 
     def fall(self):
         self.rect.y += self.velocity

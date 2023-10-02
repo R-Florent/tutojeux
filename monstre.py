@@ -7,7 +7,7 @@ class Monstre(animation.AnimatieSprite):
         self.game = game
         self.health = 100
         self.max_health = 100
-        self.attack = 5
+        self.attack = 1
         self.velocity = random.randint(1, 5)
         self.image = pygame.image.load('PygameAssets-main/mummy.png')
         self.rect = self.image.get_rect()
