@@ -31,6 +31,8 @@ class Game:
         #actualiser la barre de remplissage de l'event coment_event
         self.coment_event.update_bar(screen)
 
+        self.player.update_animation()
+
         # recuperer les projectiles du joueur
         for projectile in self.player.all_projectiles:
             projectile.move()

@@ -15,6 +15,7 @@ class Monstre(animation.AnimatieSprite):
         self.rect.x = 1080 + random.randint(1, 600)
         self.rect.y = 540
         print(self.velocity)
+        self.start_animation()
 
     def take_dmg(self, amount):
         self.health -= amount
@@ -37,7 +38,8 @@ class Monstre(animation.AnimatieSprite):
               print("plui de météore")
 
     def update_animation(self):
-        self.image
+        self.animate(loop=True)
+
 
     def update_health_bar(self, surface):
 
