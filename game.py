@@ -21,7 +21,14 @@ class Game:
         #generer l'event commet event
         self.coment_event = CometFallEvent(self)
 
+        self.score = 0
+
     def update(self, screen):
+        #afficher le score sur l'ecarn
+        fonnt = pygame.font.Font("PygameAssets-main/PixelifySans.ttf",25)
+        score_text = fonnt.render(f"Score : {self.score}",1, (0,0,0))
+        screen.blit(score_text,(20,20))
+
         # applique l'image de mon joueur
         screen.blit(self.player.image, self.player.rect)
 
@@ -74,7 +81,7 @@ class Game:
             self.coment_event.all_comets = pygame.sprite.Group()
             self.coment_event.rest_percent()
             self.all_monstre = pygame.sprite.Group()
-
+            self.score = 0
             self.is_playing = False
 
     def spawn_monster(self, monster_class_name):
@@ -99,6 +106,9 @@ class Game:
 
         #appliquer l'ensemble des image de mon group de commet
         self.coment_event.all_comets.draw(screen)
+
+    def add_score(self,score_point):
+        self.score += score_point
 
     def handle_events(self):
         for event in pygame.event.get():

@@ -14,6 +14,8 @@ class Monstre(animation.AnimatieSprite):
         self.rect.x = 1080 + random.randint(1, 600)
         self.rect.y = 540 - offset
         self.start_animation()
+        self.loot_amount = 10
+
 
     def set_speed(self, speed):
         self.default_speed = speed
@@ -25,7 +27,7 @@ class Monstre(animation.AnimatieSprite):
         if self.health <= 0 :
             #le tuer
             # self.all_monstre.remove(self)
-
+            self.game.add_score(self.loot_amount)
             #le faire respawn pour ne pas consomer trop de mémoire
             self.rect.x = 1080 + random.randint(1, 600)
             self.health = self.max_health
@@ -63,6 +65,7 @@ class Mummy(Monstre):
     def __init__(self, game):
         super().__init__(game , "mummy", (130,130))
         self.set_speed(5)
+        self.loot_amount = 20
 
 #def classe Mummy
 class Alien(Monstre):
@@ -73,3 +76,4 @@ class Alien(Monstre):
         self.health =250
         self.set_speed(2)
         self.attack = 3
+        self.loot_amount = 50

@@ -45,6 +45,7 @@ running = True
 
 while running:
 
+    clock.tick(FPS)
     # appliquer le back gound du jeux
     screen.blit(background, (0, -200))
 
@@ -83,4 +84,3 @@ while running:
                 game.start()
 
     #fixer le nombre de fps sur l'horloge du jeux
-    clock.tick(FPS)
