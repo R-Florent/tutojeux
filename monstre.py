@@ -2,20 +2,22 @@ import pygame
 import random
 import animation
 class Monstre(animation.AnimatieSprite):
-    def __init__(self, game):
-        super().__init__("mummy")
+    def __init__(self, game, monster_type, size , offset=0):
+        super().__init__(monster_type, size)
         self.game = game
         self.health = 100
         self.max_health = 100
         self.attack = 1
-        self.velocity = random.randint(1, 5)
         self.image = pygame.image.load('PygameAssets-main/mummy.png')
         self.rect = self.image.get_rect()
         print(self.image)
         self.rect.x = 1080 + random.randint(1, 600)
-        self.rect.y = 540
-        print(self.velocity)
+        self.rect.y = 540 - offset
         self.start_animation()
+
+    def set_speed(self, speed):
+        self.default_speed = speed
+        self.velocity = random.randint(1, 5)
 
     def take_dmg(self, amount):
         self.health -= amount
@@ -27,7 +29,7 @@ class Monstre(animation.AnimatieSprite):
             #le faire respawn pour ne pas consomer trop de mémoire
             self.rect.x = 1080 + random.randint(1, 600)
             self.health = self.max_health
-            self.velocity = random.randint(1, 5)
+            self.velocity = random.randint(1, self.default_speed)
 
             if self.game.coment_event.is_full_loaded():
                 self.game.all_monstre.remove(self)
@@ -54,4 +56,20 @@ class Monstre(animation.AnimatieSprite):
             self.rect.x -= self.velocity  # Déplace le joueur vers la droite
         else:
             self.game.player.take_dmg(self.attack)
-        
+
+#def classe Mummy
+class Mummy(Monstre):
+
+    def __init__(self, game):
+        super().__init__(game , "mummy", (130,130))
+        self.set_speed(5)
+
+#def classe Mummy
+class Alien(Monstre):
+
+    def __init__(self, game):
+        super().__init__(game , "alien",(300,300),140)
+        self.max_health =250
+        self.health =250
+        self.set_speed(2)
+        self.attack = 3

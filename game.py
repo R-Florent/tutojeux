@@ -1,5 +1,5 @@
 import pygame.sprite
-from monstre import Monstre
+from monstre import Monstre, Mummy, Alien
 from player import Player
 from comet_event import CometFallEvent
 
@@ -60,12 +60,12 @@ class Game:
         elif self.pressed.get(pygame.K_LEFT) and self.player.rect.x > 0:
             self.player.move_left()
 
-
     def start(self):
         self.is_playing = True
-        #genere notre monstre
-        self.spawn_monster()
-        self.spawn_monster()
+        # Génère nos monstres en spécifiant leur classe
+        self.spawn_monster(Mummy)
+        self.spawn_monster(Mummy)
+        self.spawn_monster(Alien)
         self.coment_event.percent = 0
 
     def game_over (self):
@@ -77,9 +77,8 @@ class Game:
 
             self.is_playing = False
 
-    def spawn_monster(self):
-        monstre = Monstre(self)
-        self.all_monstre.add(monstre)
+    def spawn_monster(self, monster_class_name):
+        self.all_monstre.add(monster_class_name.__call__(self))
 
 
     def chek_collision(self,sprite, group):
