@@ -82,5 +82,6 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if btn_rect.collidepoint(event.pos):
                 game.start()
-
+                #jouer le son du click sur le btn
+                game.sound_mangaer.play('click')
     #fixer le nombre de fps sur l'horloge du jeux

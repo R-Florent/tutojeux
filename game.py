@@ -2,6 +2,7 @@ import pygame.sprite
 from monstre import Monstre, Mummy, Alien
 from player import Player
 from comet_event import CometFallEvent
+from sounds import SoundManager
 
 class Game:
     def __init__(self):
@@ -17,6 +18,9 @@ class Game:
         #group de monstre
         self.all_monstre = pygame.sprite.Group()
         self.pressed = {}
+
+        #génre le sont
+        self.sound_mangaer = SoundManager()
 
         #generer l'event commet event
         self.coment_event = CometFallEvent(self)
@@ -83,6 +87,7 @@ class Game:
             self.all_monstre = pygame.sprite.Group()
             self.score = 0
             self.is_playing = False
+            self.sound_mangaer.play('game_over')
 
     def spawn_monster(self, monster_class_name):
         self.all_monstre.add(monster_class_name.__call__(self))

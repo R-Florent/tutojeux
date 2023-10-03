@@ -32,6 +32,7 @@ class Comet(pygame.sprite.Sprite):
         if self.rect.y >= 500:
             print("sol")
             self.removeComet()
+            self.game.sound_mangaer.play('meteorite')
 
             if len(self.comet_event.all_comets) == 0 :
                 print("coment_event fini")

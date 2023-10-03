@@ -28,6 +28,7 @@ class Player(animation.AnimatieSprite):
     def launch_projectile(self):
         self.all_projectiles.add(Projectile(self))
         self.start_animation()
+        self.game.sound_mangaer.play('tir')
 
     def update_animation(self):
         self.animate()
