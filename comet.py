@@ -1,9 +1,7 @@
 import pygame
 import random
-
 import game
 from player import Player
-
 
 class Comet(pygame.sprite.Sprite):
     
@@ -19,22 +17,22 @@ class Comet(pygame.sprite.Sprite):
         self.dmg = 4
         self.comet_event = comet_event
 
-    def removeComet(self):
+    def remove_comet(self):
         self.comet_event.all_comets.remove(self)
-
         if len(self.comet_event.all_comets) == 0:
             print("event fini")
             #appelle le début du jeux 
             self.comet_event.game.start()
+            self.comet_event.game.sound_mangaer.play('meteorite')
 
     def fall(self):
         self.rect.y += self.velocity
         if self.rect.y >= 500:
             print("sol")
-            self.removeComet()
-            self.game.sound_mangaer.play('meteorite')
+            self.remove_comet()
 
-            if len(self.comet_event.all_comets) == 0 :
+
+            if len(self.comet_event.all_comets) == 0:
                 print("coment_event fini")
                 self.comet_event.rest_percent()
                 self.comet_event.fall_mode = False
@@ -42,6 +40,6 @@ class Comet(pygame.sprite.Sprite):
         if self.comet_event.game.chek_collision(
             self, self.comet_event.game.all_players ):
             print("commet a toucher un joeur")
-            self.removeComet()
+            self.remove_comet()
             for player in self.comet_event.game.all_players:
                 player.take_dmg(20)
